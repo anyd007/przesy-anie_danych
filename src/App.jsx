@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Login } from "./components/logowanie/Index";
 import { Regester } from "./components/logowanie/Index";
-import { DbAdmin } from "./components/database/DbAdmin";
+import { DbAdmin } from "./components/database/Dbindex";
 import './App.css'
 
 
@@ -59,7 +59,7 @@ class App extends Component{
         const {adminActive} = this.state
         const {regActive} = this.state
         return(
-         <div className="App">
+         <div className="app">
             <div className="login">
                 <div className="container">
                     {loginActive && <Login containerRef={ref => this.current = ref}
@@ -67,7 +67,11 @@ class App extends Component{
                     odAdminLogin={()=>this.handleAdminLogin()}/>}
                     {regActive && <Regester containerRef={ref => this.current = ref}
                     onHideRegestry={() => this.handleHideReg()}/>}
-                    {adminActive && <DbAdmin
+                </div>
+            </div>
+            <div className="database">
+                <div className="dbContener">
+                {adminActive && <DbAdmin
                     onExitAdminDB={()=>this.handleAdminExit()}/>}
                 </div>
             </div>

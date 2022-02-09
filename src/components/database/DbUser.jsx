@@ -8,8 +8,9 @@ export class DbAdmin extends React.Component{
 render(){
 
     return(
-        <div className="dbContener">
-            <div className="hearer">gracze NBA</div>
+        <div className="dbMainContener">
+            <div className="dbBg"></div>
+            <div className="dbHeader">DODAJ ZAWODNIKA SWOJEGO DREAM TEAM`U</div>
             <div className="dbContent">
                 <div className="dbForm">
                     <div className="dbFormGroup">
@@ -31,8 +32,21 @@ render(){
                 </div>
             </div>
             <div className="dbFooter">
-                <button className="addPlayerBtn">dodaj</button>
-                <button onClick={()=> this.props.onExitAdminDB()} className="exitPlayerBtn">zamknij</button>
+                <button className="addPlayerBtn dbBtn">dodaj</button>
+                <button onClick={()=> this.props.onExitAdminDB()} className="exitPlayerBtn dbBtn">zamknij</button>
+            </div>
+            <div className="viewMainDb">
+                <div className="dbHeaderView">TWÓJ OSOBISTY DREAM TEAM</div>
+                    <table className="tableContener">
+                        <tbody>
+                            <tr className="databaseTr">
+                                <th className="databaseTh">IMIĘ I NAZWISKO GRACZA</th><th className="databaseTh">OBECNY/OSTATNI KLUB</th><th className="databaseTh">POZYCJA NA KTÓREJ GRA</th><th className="databaseTh">NAJWYŻSZA ILOŚC PUNKTÓW</th>
+                            </tr>
+                            <tr className="databaseTr">
+                                <td className="databaseTd">ldskfdslkf</td><td className="databaseTd">kjkljlkjlkjl</td><td className="databaseTd">kljlkjlkjkll</td><td className="databaseTd">kjkjjlkjlklkj</td>
+                            </tr>
+                        </tbody>
+                    </table>
             </div>
         </div>
     )

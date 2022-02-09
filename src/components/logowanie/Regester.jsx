@@ -1,6 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+
 
 export class Regester extends React.Component {
     constructor(props){
@@ -8,14 +7,10 @@ export class Regester extends React.Component {
     }
 
     render(){
-        const logicon  = <FontAwesomeIcon icon={faCoffee} />
-
          return <div className="mainContener" ref={this.props.containerRef}>
+            <div className="bg"></div>
                     <div className="header">Rejestracja</div>
                     <div className="content">
-                            <div className="img">
-                                <img src={logicon} />
-                            </div>
                         <div className="form">
                             <div className="form-group">
                                 <label htmlFor="username">nazwa użytkownika</label>
