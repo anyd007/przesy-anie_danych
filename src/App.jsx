@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Login } from "./components/logowanie/Index";
-import { Regester } from "./components/logowanie/Index";
+import { Login } from "./components/logowanie/Login";
+import Regester  from "./components/logowanie/Regester";
 import { DbAdmin } from "./components/database/Dbindex";
 import './App.css'
 
@@ -32,7 +32,7 @@ class App extends Component{
             this.setState({regActive:false})
             
         }
-
+        
     }
     handleAdminLogin=()=>{
         const adminActive = this.state
@@ -62,10 +62,10 @@ class App extends Component{
          <div className="app">
             <div className="login">
                 <div className="container">
-                    {loginActive && <Login containerRef={ref => this.current = ref}
+                    {loginActive && <Login 
                     onRegestry={() => this.handleShowReg()}
                     odAdminLogin={()=>this.handleAdminLogin()}/>}
-                    {regActive && <Regester containerRef={ref => this.current = ref}
+                    {regActive && <Regester
                     onHideRegestry={() => this.handleHideReg()}/>}
                 </div>
             </div>
