@@ -79,3 +79,37 @@ input:hover{
 .footer{
     width: 54%;
 }
+.bad{
+    background-color: red;
+}
+.regsucces{
+    position: fixed;
+    display: none;
+    left: 50%;
+    top:40%;
+    transform: translate(-50%, -50%);
+    height: 60%;
+    width: 50%;
+    background-color: aquamarine;
+    z-index: 5;
+    border-radius: 7px;
+    opacity: 0.8;
+}
+.regsuccesBtn{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 50%
+}
+.backgroundblur{
+    position: fixed;
+    display: none;
+    top:0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    backdrop-filter: blur(8px);
+    
+
+}
