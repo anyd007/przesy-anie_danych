@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Login } from "./components/logowanie/Login";
+import Login from "./components/logowanie/Login";
 import Regester  from "./components/logowanie/Regester";
 import { DbAdmin } from "./components/database/Dbindex";
 import './App.css'
