@@ -1,9 +1,23 @@
 import React from "react";
 import { checkValidImputsReg } from "./testreg"
+import uniqid from "uniqid"
 import "./style.css"
 
 
 const Regester = (props) =>{
+// przesyłanie na serwer express
+const sendRegestryToBackEnd = (username, password, repassword)=>{
+    fetch('http://127.0.0.1:1234/regestry',{
+        method: "POST",
+        body: JSON.stringify({
+            id:uniqid(),
+            username:username, 
+            password:password, 
+            repassword:repassword}),
+        headers: {"Content-type": "application/json"}
+    })
+}
+
     const [userName, setUserName] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [repassword, setRepassword] = React.useState('')
@@ -18,6 +32,7 @@ const Regester = (props) =>{
         if(checkValidImputsReg(password, repassword, userName)){
             succesPopup.style.display = 'flex'
             succesPopupBG.style.display = 'flex'
+            sendRegestryToBackEnd(userName, password,repassword)
         }
         if(!userName){
             nameInput.onclick= ()=>{
@@ -48,7 +63,7 @@ const Regester = (props) =>{
          }
         
     }
-
+// zamykanie okna rejestracji
     const exitReg = () =>{
         props.onHideRegestry()
     }

@@ -82,7 +82,10 @@ input:hover{
 .bad{
     background-color: red;
 }
-.regsucces{
+.hide{
+    display: none;
+}
+.regsucces, .badLoginWarrinig{
     position: fixed;
     display: none;
     left: 50%;
@@ -95,7 +98,7 @@ input:hover{
     border-radius: 7px;
     opacity: 0.8;
 }
-.regsuccesBtn{
+.regsuccesBtn, .warrningBtn{
     position: absolute;
     left: 50%;
     transform: translate(-50%);
@@ -110,6 +113,9 @@ input:hover{
     width: 100%;
     z-index: 4;
     backdrop-filter: blur(8px);
-    
-
+    }
+.warrinigInfo{
+    top: 20%;
+   position: absolute;
 }
+
