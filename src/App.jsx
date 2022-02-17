@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Login from "./components/logowanie/Login";
 import Regester  from "./components/logowanie/Regester";
-import { DbAdmin } from "./components/database/Dbindex";
+import {DatabaseUser} from "./components/database/DatabaseUser"
 import './App.css'
 
 
@@ -71,7 +71,7 @@ class App extends Component{
             </div>
             <div className="database">
                 <div className="dbContener">
-                {adminActive && <DbAdmin
+                {adminActive && <DatabaseUser
                     onExitAdminDB={()=>this.handleAdminExit()}/>}
                 </div>
             </div>
