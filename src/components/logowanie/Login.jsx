@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react"
 import "./style.css"
 
 const Login = (props)=>{
     const [state, setState]= React.useState({username:"", password:"", id:""})
     const [backEndReg, setBackEndReg] = React.useState('')
-        
     //    pobieranie wartości pól logowania
         const loginValues = e =>{
             const {name, value} = e.target
