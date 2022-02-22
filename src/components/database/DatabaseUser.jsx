@@ -16,7 +16,8 @@ export class DatabaseUser extends Component {
         position: "",
         highScore: "",
       },
-      loginData: this.props.getDataFromLogin
+      loginData: [this.props.getDataFromLogin], //przypisywanie danych logowania z app.jsx
+      saveData: [],
     };
   }
   // zapisywanie danych wprowadzonych w inputach
@@ -29,18 +30,36 @@ export class DatabaseUser extends Component {
       };
     });
   };
-  // przekazywanie daych z inputów do tablicy
+  // przekazywanie daych z inputów do tablicy oraz zapisywanie danych z inputów oraz danych logowania
+  //   i przekazywanie ich do fukcji wysyłającej na serwer
   handleSubmit = (e) => {
-    this.setState((prev) => ({
-      userForm: [...prev.userForm, prev.userInputs],
-      userInputs: {
-        playerName: "",
-        playerClub: "",
-        position: "",
-        highScore: "",
-      },
-    }));
-
+    this.setState(
+      (prev) => ({
+        userForm: [...prev.userForm, prev.userInputs],
+        userInputs: {
+          playerName: "",
+          playerClub: "",
+          position: "",
+          highScore: "",
+        },
+      }),
+      () => {
+        this.state.userForm.map((el) => { //mapowanie po tablicy userform i przekazywanie agumentów do fukcji sendtobackend
+          this.sendToBackEnd(
+            el.playerName,
+            el.playerClub,
+            el.position,
+            el.highScore
+          );
+          return {
+            playerName: el.playerName,
+            playerClub: el.playerClub,
+            position: el.position,
+            highScore: el.highScore,
+          };
+        });
+      }
+    );
     //  czyszczenie pól inputów
     let inputs = document.querySelectorAll("input");
     inputs.forEach((el) => {
@@ -48,12 +67,30 @@ export class DatabaseUser extends Component {
     });
     e.preventDefault();
   };
-  // pobieranie danych z komponentu logowania
-  handleGetDataFromLogin = () => {
-      this.props.getDataFromLogin()
+
+  //   przesyłanie danych na beckend
+  sendToBackEnd = (playerName, playerClub, position, highScore) => {
+    fetch("http://127.0.0.1:1234/loginUserDatabase", {
+      method: "POST",
+      body: JSON.stringify({
+        playerName: playerName,
+        playerClub: playerClub,
+        position: position,
+        highScore: highScore,
+      }),
+      headers: { "Content-Type": "Application/Json" },
+    });
   };
   render() {
     const { userInputs } = this.state;
+    let { loginData } = this.state;
+    //odbieranie danych z express
+  const getUserDataBase = () =>{
+    fetch('http://127.0.0.1:1234/loginUserDatabase')
+    .then(res=>res.json())
+    .then(data => console.log(data))
+}
+    getUserDataBase()
     //    odblokowanie buttona "dodaj" jeżeli żaden input nie jest pusty
     let checkEmtyInputs = validInputs(
       userInputs.playerName &&
@@ -61,17 +98,6 @@ export class DatabaseUser extends Component {
         userInputs.position &&
         userInputs.highScore
     );
-    
-    //    przesyłanie danych na beckend
-    const sendToBackEnd = () => {
-      fetch("http://127.0.0.1:1234/loginUserDatabase", {
-        method: "POST",
-        body: JSON.stringify(),
-        headers: { "Content-Type": "Application/Json" },
-      });
-    };
-    let {loginData} = this.state
-    console.log(loginData);
     return (
       <div className="dbMainContener">
         <div className="dbBg"></div>
@@ -132,7 +158,9 @@ export class DatabaseUser extends Component {
           >
             dodaj
           </button>
-          <button className="dbBtn">zapisz</button>
+          <button type="button" onClick={this.handleSaveBtn} className="dbBtn">
+            zapisz
+          </button>
           <button
             onClick={() => this.props.onExitAdminDB()}
             className="exitPlayerBtn dbBtn"
