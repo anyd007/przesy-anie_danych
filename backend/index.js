@@ -1,7 +1,6 @@
 const { request } = require('express')
 const express = require('express')
 const app = express()
-const db = express()
 const cors = require('cors')
 const server = {
     port: 1234
@@ -27,9 +26,10 @@ app.get('/regestry', (req, res) =>{
 // pobieranie danych z inputów drram teamu i dodawanie ich do pustej tablict "loginUserDatabase"
 app.post('/loginUserDatabase', (req,res) =>{
     loginUserDatabase.push(req.body)
+   
     res.status(200).end();
     })
-    
+    //wysłanie danych do bazy danych zalogowanego urzytkownika
 app.get('/loginUserDatabase',(req,res)=>{
     res.json({loginUserDatabase})
 })

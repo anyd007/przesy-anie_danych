@@ -56,11 +56,7 @@ const Login = (props) => {
     warrningPopup.style.display = "none";
     backgroundblur.style.display = "none";
   };
-  // zapiętywanie wartości z logowania i przekazywanie ich do databaseuser
-//   let sendToDatabase = (props) => {
-//         props.sentData(state)
-//   };
-
+ 
   //    pobieranie daych z express, dane podawane w rejestracji w celu powónania z danymi wpisanymi w logowaniu
   React.useEffect(() => {
     fetch("http://127.0.0.1:1234/regestry")
