@@ -37,7 +37,7 @@ const Login = (props) => {
     backEndReg.forEach((el) => {
       if (el.username == user && el.password == pass) {
         state.id = el.id; //nadanie id przy logowaniu
-        props.sentData(state); //przekazanie stanu do app
+        props.sentData(state); //przekazanie stanu z id username i password do app
         props.odAdminLogin();
       } else {
         warrningPopup.style.display = "flex";

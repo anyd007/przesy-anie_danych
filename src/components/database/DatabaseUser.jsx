@@ -44,7 +44,8 @@ export class DatabaseUser extends Component {
         },
       }),
       () => {
-        this.state.userForm.map((el) => { //mapowanie po tablicy userform i przekazywanie agumentów do fukcji sendtobackend
+        this.state.userForm.map((el) => {
+          //mapowanie po tablicy userform i przekazywanie agumentów do fukcji sendtobackend
           this.sendToBackEnd(
             el.playerName,
             el.playerClub,
@@ -66,6 +67,7 @@ export class DatabaseUser extends Component {
       return (el.value = "");
     });
     e.preventDefault();
+    this.state.userForm = [];
   };
 
   //   przesyłanie danych na beckend
@@ -73,6 +75,9 @@ export class DatabaseUser extends Component {
     fetch("http://127.0.0.1:1234/loginUserDatabase", {
       method: "POST",
       body: JSON.stringify({
+        id: this.state.loginData.map((el) => {
+          return el.id;
+        }), //przekazywanie id z panelu logowania bo bazy danych
         playerName: playerName,
         playerClub: playerClub,
         position: position,
@@ -81,16 +86,31 @@ export class DatabaseUser extends Component {
       headers: { "Content-Type": "Application/Json" },
     });
   };
+
+  // odbieranie danych z express
+  getData = () => {
+    fetch("http://127.0.0.1:1234/loginUserDatabase")
+      .then((res) => res.json())
+      .then((data) => data.loginUserDatabase)
+      .then((data) => {
+        this.setState({
+          saveData: data,
+        });
+      })
+  };
+  // update bazy danych wyświtlanej dla urzytkownika
+  componentDidUpdate(prevProps, prevstate) {
+    if (prevstate.userForm !== this.state.userForm) {
+      setTimeout(() => {
+        this.getData();
+      }, 300);
+    }
+  }
+  componentDidMount() {
+    this.getData();
+  }
   render() {
     const { userInputs } = this.state;
-    let { loginData } = this.state;
-    //odbieranie danych z express
-  const getUserDataBase = () =>{
-    fetch('http://127.0.0.1:1234/loginUserDatabase')
-    .then(res=>res.json())
-    .then(data => console.log(data))
-}
-    getUserDataBase()
     //    odblokowanie buttona "dodaj" jeżeli żaden input nie jest pusty
     let checkEmtyInputs = validInputs(
       userInputs.playerName &&
@@ -98,6 +118,17 @@ export class DatabaseUser extends Component {
         userInputs.position &&
         userInputs.highScore
     );
+   let idDB= this.state.saveData.map(el =>el.id)
+   let idUser= this.state.loginData.map(el => el.id)
+    for(let x of idDB){
+      if(idUser.some(el => x.includes(el))){
+        console.log('hi');
+      }else{
+        console.log('non');
+      }
+      
+    }
+    console.log(idUser);
     return (
       <div className="dbMainContener">
         <div className="dbBg"></div>
@@ -158,9 +189,6 @@ export class DatabaseUser extends Component {
           >
             dodaj
           </button>
-          <button type="button" onClick={this.handleSaveBtn} className="dbBtn">
-            zapisz
-          </button>
           <button
             onClick={() => this.props.onExitAdminDB()}
             className="exitPlayerBtn dbBtn"
@@ -178,17 +206,14 @@ export class DatabaseUser extends Component {
                 <th className="databaseTh">POZYCJA NA KTÓREJ GRA</th>
                 <th className="databaseTh">NAJWYŻSZA ILOŚC PUNKTÓW</th>
               </tr>
-              {/* mapowanie po tablicy 'userform' i przekazywanie danych do formularza */}
-              {this.state.userForm.map(
-                ({ playerName, playerClub, position, highScore }) => (
-                  <tr className="databaseTr">
-                    <td className="databaseTd">{playerName}</td>
-                    <td className="databaseTd">{playerClub}</td>
-                    <td className="databaseTd">{position}</td>
-                    <td className="databaseTd">{highScore}</td>
-                  </tr>
-                )
-              )}
+              {this.state.saveData.map((el) => (
+                <tr className="databaseTr">
+                  <td className="databaseTd">{el.playerName}</td>
+                  <td className="databaseTd">{el.playerClub}</td>
+                  <td className="databaseTd">{el.position}</td>
+                  <td className="databaseTd">{el.highScore}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
