@@ -75,13 +75,12 @@ export class DatabaseUser extends Component {
     fetch("http://127.0.0.1:1234/loginUserDatabase", {
       method: "POST",
       body: JSON.stringify({
-        id: this.state.loginData.map((el) => {
-          return el.id;
-        }), //przekazywanie id z panelu logowania bo bazy danych
+        id: this.state.loginData.map((el) => el.id).join(''), //przekazywanie id z panelu logowania bo bazy danych
         playerName: playerName,
         playerClub: playerClub,
         position: position,
-        highScore: highScore,
+        highScore: highScore
+        
       }),
       headers: { "Content-Type": "Application/Json" },
     });
@@ -94,7 +93,9 @@ export class DatabaseUser extends Component {
       .then((data) => data.loginUserDatabase)
       .then((data) => {
         this.setState({
-          saveData: data,
+          saveData: data.filter(el=> {
+            return el.id == this.state.loginData.map(el=>el.id)  //fitrowanie wyświtlania danych wg klucza id
+          })
         });
       })
   };
@@ -118,17 +119,6 @@ export class DatabaseUser extends Component {
         userInputs.position &&
         userInputs.highScore
     );
-   let idDB= this.state.saveData.map(el =>el.id)
-   let idUser= this.state.loginData.map(el => el.id)
-    for(let x of idDB){
-      if(idUser.some(el => x.includes(el))){
-        console.log('hi');
-      }else{
-        console.log('non');
-      }
-      
-    }
-    console.log(idUser);
     return (
       <div className="dbMainContener">
         <div className="dbBg"></div>
