@@ -23,13 +23,12 @@ app.post('/regestry', (req,res) =>{
 app.get('/regestry', (req, res) =>{
     res.json({regystryUsers})
 })
-// pobieranie danych z inputów drram teamu i dodawanie ich do pustej tablict "loginUserDatabase"
+// pobieranie danych z inputów dream teamu i dodawanie ich do pustej tablict "loginUserDatabase"
 app.post('/loginUserDatabase', (req,res) =>{
     loginUserDatabase.push(req.body)
-   
-    res.status(200).end();
+    res.status(200).end;
     })
-    //wysłanie danych do bazy danych zalogowanego urzytkownika
+    //wysłanie danych do bazy danych zalogowanego uzytkownika
 app.get('/loginUserDatabase',(req,res)=>{
     res.json({loginUserDatabase})
 })
