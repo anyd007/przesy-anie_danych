@@ -59,7 +59,7 @@ const Login = (props) => {
  
   //    pobieranie daych z express, dane podawane w rejestracji w celu powónania z danymi wpisanymi w logowaniu
   React.useEffect(() => {
-    fetch("http://127.0.0.1:1234/regestry")
+    fetch("/regestry")
       .then((res) => res.json())
       .then((data) =>
         setBackEndReg(
