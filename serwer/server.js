@@ -5,7 +5,7 @@ const path = require('path');
 //     port:5000
 // }
 const app = express()
-const publicPath = path.join(__dirname, 'public');
+const publicPath = path.join(__dirname,"..", 'public');
 
 
 const regystryUsers = []
