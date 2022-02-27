@@ -2,45 +2,20 @@ const express = require("express")
 const cors = require("cors")
 const path = require('path');
 const app = express()
-const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
-const publicPath = path.join(__dirname, '../build');
 const regystryUsers = []
 const loginUserDatabase = []
-const apiProxy = createProxyMiddleware("/loginUserDatabase", {
-    "target": 'https://dream-team-database.herokuapp.com',
-    "secure": false,
-    "logLevel": "debug",
-    "pathRewrite": {
-      "^/loginUserDatabase": ""
-    },
-    "changeOrigin": true
-  })
-  const apiProxy2 = createProxyMiddleware("/regestry", {
-    "target": 'https://dream-team-database.herokuapp.com',
-    "secure": false,
-    "logLevel": "debug",
-    "pathRewrite": {
-      "^/regestry": ""
-    },
-    "changeOrigin": true
-  })
+
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static(publicPath));
-app.use(apiProxy)
-app.use(apiProxy2)
 
 
 // przekazywania danych na stronę sewera
 app.get("/",(req,res) =>{
     res.send(req.body)
 })
-app.get('/', (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
- });
 
 // pobieranie danych z rejestracji i zapisywanie ich do tablicy regystryUsers
 app.post("/regestry", (req,res)=>{
@@ -63,6 +38,15 @@ app.get("/regestry", (req,res)=>{
 
 //tworzenie zmiennej która przekaże dane do heroku, dodatkowo należy dopisać w package.jeson w scripts : "web": "index.js"  
 const herokuPort = process.env.PORT || 5000
+if (process.env.NODE_ENV === 'production') {
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, '/build')));
+  // Handle React routing, return all requests to React app
+    app.get('*', function(req, res) {
+      res.sendFile(path.join(__dirname, '/build', 'index.html'));
+    });
+  }
+
 //nasłuchiwanie app na jakim porcie na działać
 app.listen(herokuPort, ()=>{ 
     console.log(`Działam na porcie ${herokuPort}`);
