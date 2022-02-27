@@ -19,7 +19,7 @@ const server = httpProxy.createServer(function (req, res, proxy) {
       port: 80,
       host: 'https://dream-team-database.herokuapp.com/'
     });
-  }).listen(5000);  
+  }).listen(3000);  
 //przekazywania danych na stronę sewera
 app.get("/",(req,res) =>{
     res.send(req.body)
@@ -51,7 +51,7 @@ app.get('/loginUserDatabase', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
  });
 //tworzenie zmiennej która przekaże dane do heroku, dodatkowo należy dopisać w package.jeson w scripts : "web": "index.js"  
-const herokuPort = process.env.PORT || 5000
+const herokuPort = process.env.PORT || 3000
 //nasłuchiwanie app na jakim porcie na działać
 app.listen(herokuPort, ()=>{ 
     console.log(`Działam na porcie ${herokuPort}`);
