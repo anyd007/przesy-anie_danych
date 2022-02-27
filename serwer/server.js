@@ -1,9 +1,8 @@
 const express = require("express")
 const cors = require("cors")
 const path = require('path');
-// const server = {
-//     port:5000
-// }
+const http = require('http'),
+    httpProxy = require('http-proxy');
 const app = express()
 const publicPath = path.join(__dirname,"..", 'public');
 
@@ -14,7 +13,13 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static(publicPath));
 
-
+const server = httpProxy.createServer(function (req, res, proxy) {
+    req.headers.host = 'https://dream-team-database.herokuapp.com/';
+    proxy.proxyRequest(req, res, {
+      port: 80,
+      host: 'https://dream-team-database.herokuapp.com/'
+    });
+  }).listen(5000);  
 //przekazywania danych na stronę sewera
 app.get("/",(req,res) =>{
     res.send(req.body)
