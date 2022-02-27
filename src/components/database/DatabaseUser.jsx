@@ -72,7 +72,7 @@ export class DatabaseUser extends Component {
 
   //   przesyłanie danych na beckend
   sendToBackEnd = (playerName, playerClub, position, highScore) => {
-    fetch("https://serwer-dream-team.herokuapp.com/loginUserDatabase", {
+    fetch("/loginUserDatabase", {
       method: "POST",
       body: JSON.stringify({
         id: this.state.loginData.map((el) => el.id).join(''), //przekazywanie id z panelu logowania bo bazy danych
@@ -88,7 +88,7 @@ export class DatabaseUser extends Component {
 
   // odbieranie danych z express
   getData = () => {
-    fetch("https://serwer-dream-team.herokuapp.com/loginUserDatabase")
+    fetch("/loginUserDatabase")
       .then((res) => res.json())
       .then((data) => data.loginUserDatabase)
       .then((data) => {
