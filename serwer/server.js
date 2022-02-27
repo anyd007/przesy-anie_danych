@@ -19,9 +19,6 @@ app.use(express.static(publicPath));
 app.get("/",(req,res) =>{
     res.send(req.body)
 })
-app.get('*', (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
- });
 
 // pobieranie danych z rejestracji i zapisywanie ich do tablicy regystryUsers
 app.post("/regestry", (req,res)=>{
@@ -40,10 +37,16 @@ app.get("/regestry", (req,res)=>{
    //wysłanie danych do bazy danych zalogowanego uzytkownika
    app.get("/loginUserDatabase",(req,res)=>{
     res.json({loginUserDatabase})
+    
 })
-
+app.get('/loginUserDatabase', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+ });
+ app.get('/regestry', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+ });
 //tworzenie zmiennej która przekaże dane do heroku, dodatkowo należy dopisać w package.jeson w scripts : "web": "index.js"  
-const herokuPort = process.env.PORT || 3000
+const herokuPort = process.env.PORT || 5000
 //nasłuchiwanie app na jakim porcie na działać
 app.listen(herokuPort, ()=>{ 
     console.log(`Działam na porcie ${herokuPort}`);
