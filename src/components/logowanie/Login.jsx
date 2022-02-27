@@ -67,7 +67,10 @@ const Login = (props) => {
             return { username: el.username, password: el.password, id: el.id };
           })
         )
-      );
+      )
+      .catch((error) => {
+        console.log(error)
+      });
   }, []);
 
   return (

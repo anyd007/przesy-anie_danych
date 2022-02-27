@@ -98,6 +98,9 @@ export class DatabaseUser extends Component {
           })
         });
       })
+      .catch((error) => {
+        console.log(error)
+      });
   };
   // update bazy danych wyświtlanej dla urzytkownika
   componentDidUpdate(prevProps, prevstate) {
