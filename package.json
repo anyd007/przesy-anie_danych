@@ -2,7 +2,6 @@
   "name": "przesy-anie_danych",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -12,7 +11,6 @@
     "@testing-library/user-event": "^13.5.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "http-proxy-middleware": "^2.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
@@ -22,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "heroku-postbuild": "cd serwer && npm install && npm run build",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -46,6 +44,7 @@
     ]
   },
   "devDependencies": {
+    "http-proxy-middleware": "^2.0.3",
     "webpack": "^5.69.1"
   }
 }

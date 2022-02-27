@@ -2,7 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const path = require('path');
 const app = express()
-
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const regystryUsers = []
 const loginUserDatabase = []
@@ -10,7 +10,8 @@ const loginUserDatabase = []
 
 app.use(cors())
 app.use(express.json())
-
+app.use("/loginUserDatabase", createProxyMiddleware({target: "https://dream-team-database.herokuapp.com", changeOrigin: true  }))
+app.use("/regestry", createProxyMiddleware({target: "https://dream-team-database.herokuapp.com", changeOrigin: true  }))
 
 // przekazywania danych na stronę sewera
 app.get("/",(req,res) =>{
