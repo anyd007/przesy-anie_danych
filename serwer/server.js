@@ -10,8 +10,8 @@ const loginUserDatabase = []
 
 app.use(cors())
 app.use(express.json())
-app.use("/loginUserDatabase", createProxyMiddleware({target: "https://dream-team-database.herokuapp.com", changeOrigin: true  }))
-app.use("/regestry", createProxyMiddleware({target: "https://dream-team-database.herokuapp.com", changeOrigin: true  }))
+app.use("http://localhost:5000/loginUserDatabase", createProxyMiddleware({target: "https://dream-team-database.herokuapp.com", changeOrigin: true  }))
+app.use("http://localhost:5000/regestry", createProxyMiddleware({target: "https://dream-team-database.herokuapp.com", changeOrigin: true  }))
 
 // przekazywania danych na stronę sewera
 app.get("/",(req,res) =>{
