@@ -4,7 +4,7 @@ const path = require('path');
 const app = express()
 
 
-const publicPath = path.join(__dirname,"..", 'public');
+const publicPath = path.join(__dirname, '../build');
 const regystryUsers = []
 const loginUserDatabase = []
 
@@ -14,9 +14,9 @@ app.use(express.static(publicPath));
 
 
 //przekazywania danych na stronę sewera
-app.get("/",(req,res) =>{
-    res.send(req.body)
-})
+// app.get("/",(req,res) =>{
+//     res.send(req.body)
+// })
 app.get('/', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
  });
@@ -46,3 +46,7 @@ const herokuPort = process.env.PORT || 5000
 app.listen(herokuPort, ()=>{ 
     console.log(`Działam na porcie ${herokuPort}`);
 })
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../przesy-anie_danych/build')));
+}
