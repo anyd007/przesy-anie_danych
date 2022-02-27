@@ -2,21 +2,42 @@ const express = require("express")
 const cors = require("cors")
 const path = require('path');
 const app = express()
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 const publicPath = path.join(__dirname, '../build');
 const regystryUsers = []
 const loginUserDatabase = []
+const apiProxy = createProxyMiddleware("/loginUserDatabase", {
+    "target": 'https://dream-team-database.herokuapp.com',
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/loginUserDatabase": ""
+    },
+    "changeOrigin": true
+  })
+  const apiProxy2 = createProxyMiddleware("/regestry", {
+    "target": 'https://dream-team-database.herokuapp.com',
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/regestry": ""
+    },
+    "changeOrigin": true
+  })
 
 app.use(cors())
 app.use(express.json())
 app.use(express.static(publicPath));
+app.use(apiProxy)
+app.use(apiProxy2)
 
 
-//przekazywania danych na stronę sewera
-// app.get("/",(req,res) =>{
-//     res.send(req.body)
-// })
+// przekazywania danych na stronę sewera
+app.get("/",(req,res) =>{
+    res.send(req.body)
+})
 app.get('/', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
  });
@@ -47,6 +68,3 @@ app.listen(herokuPort, ()=>{
     console.log(`Działam na porcie ${herokuPort}`);
 })
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../przesy-anie_danych/build')));
-}
