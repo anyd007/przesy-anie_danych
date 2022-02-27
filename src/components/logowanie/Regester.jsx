@@ -6,7 +6,7 @@ import "./style.css";
 const Regester = (props) => {
   // przesyłanie na serwer express
   const sendRegestryToBackEnd = (username, password, repassword) => {
-    fetch("/regestry", {
+    fetch("http://localhost:5000/regestry", {
       method: "POST",
       body: JSON.stringify({
         id: uniqid(),
