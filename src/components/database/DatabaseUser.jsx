@@ -88,7 +88,7 @@ export class DatabaseUser extends Component {
 
   // odbieranie danych z express
   getData = () => {
-    fetch("/loginUserDatabase")
+    fetch("http://localhost:5000/loginUserDatabase")
       .then((res) => res.json())
       .then((data) => data.loginUserDatabase)
       .then((data) => {
