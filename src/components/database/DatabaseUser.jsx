@@ -2,6 +2,7 @@ import { Component } from "react";
 import React from "react";
 import Login from "../logowanie/Login";
 import { validInputs } from "../logowanie/testreg";
+import uniqid from "uniqid";
 import "./dbstyle.css";
 
 export class DatabaseUser extends Component {
@@ -200,7 +201,7 @@ export class DatabaseUser extends Component {
                 <th className="databaseTh">NAJWYŻSZA ILOŚC PUNKTÓW</th>
               </tr>
               {this.state.saveData.map((el) => (
-                <tr className="databaseTr">
+                <tr key= {uniqid()} className="databaseTr">
                   <td key={el.playerName} className="databaseTd">{el.playerName}</td>
                   <td key={el.playerClub} className="databaseTd">{el.playerClub}</td>
                   <td key={el.position} className="databaseTd">{el.position}</td>
