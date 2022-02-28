@@ -201,10 +201,10 @@ export class DatabaseUser extends Component {
               </tr>
               {this.state.saveData.map((el) => (
                 <tr className="databaseTr">
-                  <td className="databaseTd">{el.playerName}</td>
-                  <td className="databaseTd">{el.playerClub}</td>
-                  <td className="databaseTd">{el.position}</td>
-                  <td className="databaseTd">{el.highScore}</td>
+                  <td key={el.playerName} className="databaseTd">{el.playerName}</td>
+                  <td key={el.playerClub} className="databaseTd">{el.playerClub}</td>
+                  <td key={el.position} className="databaseTd">{el.position}</td>
+                  <td key={el.highScore} className="databaseTd">{el.highScore}</td>
                 </tr>
               ))}
             </tbody>
