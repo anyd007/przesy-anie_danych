@@ -90,6 +90,7 @@ export class DatabaseUser extends Component {
   // odbieranie danych z express
   getData = () => {
     fetch("https://serwer-dream-team.herokuapp.com/loginUserDatabase")
+      
       .then((res) => res.json())
       .then((data) => data.loginUserDatabase)
       .then((data) => {
