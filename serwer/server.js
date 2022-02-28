@@ -10,13 +10,13 @@ const loginUserDatabase = []
 
 app.use(cors())
 app.use(express.json())
-app.use("/loginUserDatabase", createProxyMiddleware({target: "https://dream-team-database.herokuapp.com", changeOrigin: true  }))
-app.use("/regestry", createProxyMiddleware({target: "https://dream-team-database.herokuapp.com", changeOrigin: true  }))
+// app.use("/loginUserDatabase", createProxyMiddleware({target: "http://localhost:5000", changeOrigin: true  }))
+// app.use("/regestry", createProxyMiddleware({target: "http://localhost:5000", changeOrigin: true  }))
 
 // przekazywania danych na stronę sewera
-// app.get("/",(req,res) =>{
-//     res.send(req.body)
-// })
+app.get("/",(req,res) =>{
+    res.send(req.body)
+})
 
 // pobieranie danych z rejestracji i zapisywanie ich do tablicy regystryUsers
 app.post("/regestry", (req,res)=>{
@@ -41,7 +41,7 @@ app.get("/regestry", (req,res)=>{
 const herokuPort = process.env.PORT || 5000
 if (process.env.NODE_ENV === 'production') {
     // Serve any static files
-    app.use(express.static(path.join(__dirname, 'build')));
+    app.use(express.static(path.join(__dirname, 'components/logowanie')));
   // Handle React routing, return all requests to React app
     app.get('/', function(req, res) {
       res.sendFile(path.join(__dirname, 'build', 'index.html'));
