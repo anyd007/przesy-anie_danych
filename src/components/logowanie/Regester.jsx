@@ -6,7 +6,7 @@ import "./style.css";
 const Regester = (props) => {
   // przesyłanie na serwer express
   const sendRegestryToBackEnd = (username, password, repassword) => {
-    fetch("https://serwer-dream-team.herokuapp.com/regestry", {
+    fetch("/api/regestry", {
       method: "POST",
       body: JSON.stringify({
         id: uniqid(),
