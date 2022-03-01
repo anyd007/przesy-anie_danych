@@ -63,7 +63,7 @@ const Login = (props) => {
       .then((res) => res.json())
       .then((data) =>
         setBackEndReg(
-          data.regystryUsers.map((el) => {
+          data.regestryUsers.map((el) => {
             return { username: el.username, password: el.password, id: el.id };
           })
         )
