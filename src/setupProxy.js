@@ -1,10 +1,17 @@
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.use(
-    '/api/regestry',
+    "/api/regestry",
     createProxyMiddleware({
-      target: 'https://serwer-dream-team.herokuapp.com',
+      target: "https://serwer-dream-team.herokuapp.com",
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    "/api/loginUserDatabase",
+    createProxyMiddleware({
+      target: "https://serwer-dream-team.herokuapp.com",
       changeOrigin: true,
     })
   );
