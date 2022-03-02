@@ -4,9 +4,10 @@ import uniqid from "uniqid";
 import "./style.css";
 
 const Regester = (props) => {
+
   // przesyłanie na serwer express
   const sendRegestryToBackEnd = (username, password, repassword) => {
-    fetch(`https://cors-anywhere.herokuapp.com/${process.env.REACT_APP_GLOBAL_POST}/api/regestry`, {
+    fetch(`${process.env.REACT_APP_GLOBAL_POST}/api/regestry`, {
       method: "POST",
       body: JSON.stringify({
         id: uniqid(),
@@ -17,6 +18,7 @@ const Regester = (props) => {
       headers: { "Content-type": "application/json" },
     });
   };
+  
 
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");

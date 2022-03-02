@@ -8,7 +8,7 @@ const Login = (props) => {
     password: "",
     id: "",
   });
-  const [backEndReg, setBackEndReg] = React.useState("");
+  const [backEndReg, setBackEndReg] = React.useState(true);
 
   //    pobieranie wartości pól logowania (z inputów)
   const loginValues = (e) => {
@@ -59,7 +59,7 @@ const Login = (props) => {
  
   //    pobieranie daych z express, dane podawane w rejestracji w celu powónania z danymi wpisanymi w logowaniu
   React.useEffect(() => {
-    fetch(`https://cors-anywhere.herokuapp.com/${process.env.REACT_APP_GLOBAL_GET}/api/regestry`)
+    fetch(`${process.env.REACT_APP_GLOBAL_GET}/api/regestry`)
       .then((res) => res.json())
       .then((data) =>
         setBackEndReg(
