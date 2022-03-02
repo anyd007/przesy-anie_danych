@@ -2,7 +2,9 @@
   "name": "przesy-anie_danych",
   "version": "0.1.0",
   "private": true,
-  "engines": { "node": "16.13.1"},
+  "engines": {
+    "node": "16.13.1"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -17,7 +19,8 @@
     "react-icons": "^4.3.1",
     "react-scripts": "5.0.0",
     "uniqid": "^5.4.0",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "ws": "^8.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
