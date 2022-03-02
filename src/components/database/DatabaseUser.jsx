@@ -89,7 +89,7 @@ export class DatabaseUser extends Component {
 
   // odbieranie danych z express
   getData = () => {
-    fetch('/api/loginUserDatabase')
+    fetch(`${process.env.REACT_APP_GLOBAL_GET}/api/loginUserDatabase`)
       
       .then((res) => res.json())
       .then((data) => data.loginUserDatabase)
