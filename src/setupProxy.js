@@ -11,7 +11,7 @@ module.exports = function (app) {
   app.use(
     "/api/loginUserDatabase",
     createProxyMiddleware({
-      target: "https://serwer-dream-team.herokuapp.com/api/loginUserDatabase",
+      target: "https://serwer-dream-team.herokuapp.com",
       changeOrigin: true,
     })
   );
