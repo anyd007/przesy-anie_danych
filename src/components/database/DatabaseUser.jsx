@@ -74,7 +74,7 @@ export class DatabaseUser extends Component {
   //   przesyłanie danych na beckend
   sendToBackEnd = async (playerName, playerClub, position, highScore) => {
     try{
-   await fetch(`${REACT_APP_GLOBAL_POST}${process.env.REACT_APP_USER_DB_API}`, {
+   await fetch(`${process.env.REACT_APP_GLOBAL_POST}${process.env.REACT_APP_USER_DB_API}`, {
       method: "POST",
       body: JSON.stringify({
         id: this.state.loginData.map((el) => el.id).join(''), //przekazywanie id z panelu logowania bo bazy danych
