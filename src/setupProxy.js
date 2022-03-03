@@ -15,4 +15,11 @@ module.exports = function (app) {
       changeOrigin: true,
     })
   );
+  app.use(
+      "REACT_APP_REG_API",
+      createProxyMiddleware({
+          target: "REACT_APP_GLOBAL_POST",
+          changeOrigin: true,
+      })
+  )
 };
