@@ -7,7 +7,7 @@ const Regester = (props) => {
 
   // przesyłanie na serwer express
   const sendRegestryToBackEnd = (username, password, repassword) => {
-    fetch('https://serwer-dream-team.herokuapp.com/api/regestry/', {
+    fetch(`https://cors-anywhere.herokuapp.com/https://serwer-dream-team.herokuapp.com/api/regestry/`, {
       method: "POST",
       body: JSON.stringify({
         id: uniqid(),
