@@ -8,6 +8,7 @@ const Regester = (props) => {
   // przesyłanie na serwer express
   const sendRegestryToBackEnd = (username, password, repassword) => {
     fetch(`${process.env.REACT_APP_GLOBAL_POST}${process.env.REACT_APP_REG_API}`, {
+      mode: 'no-cors',
       method: "POST",
       body: JSON.stringify({
         id: uniqid(),
