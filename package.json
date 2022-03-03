@@ -4,8 +4,7 @@
   "private": true,
   "engines": {
     "node": "16.13.1",
-    "npm":"8.1.4",
-    "proxy": "https://serwer-dream-team.herokuapp.com"
+    "npm":"8.1.4"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
