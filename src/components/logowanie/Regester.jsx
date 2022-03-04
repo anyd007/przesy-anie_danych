@@ -20,9 +20,9 @@ const Regester = (props) => {
   };
   
 
-  const [userName, setUserName] = React.useState(true);
-  const [password, setPassword] = React.useState(true);
-  const [repassword, setRepassword] = React.useState(true);
+  const [userName, setUserName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [repassword, setRepassword] = React.useState("");
 
   // validator poprawności pól rejestracyjnych
   const checkValid = () => {
