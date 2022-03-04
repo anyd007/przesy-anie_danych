@@ -49,7 +49,7 @@ const Login = (props) => {
           };
         });
       }
-    });
+    })
   };
   // zamykanie popup z info o błędnym logowaniu
   const WarrningExit = () => {
