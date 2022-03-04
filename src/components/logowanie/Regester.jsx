@@ -7,7 +7,7 @@ const Regester = (props) => {
 
   // przesyłanie na serwer express
   const sendRegestryToBackEnd = (username, password, repassword) => {
-    fetch('https://express-heroku-nba-app.herokuapp.com/api/regestry', {
+    fetch(`${process.env.REACT_APP_GLOBAL_POST}api/regestry`, {
       method: "POST",
       body: JSON.stringify({
         id: uniqid(),
